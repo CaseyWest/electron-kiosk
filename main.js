@@ -26,11 +26,10 @@ function loadConfig(callback) {
 
 function createWindow () {
   loadConfig((config) => {
-    console.log(config)
     mainWindow = new BrowserWindow({
-      width: 800, 
-      height: 600, 
-      kiosk: true
+      width: 1024, 
+      height: 768, 
+      kiosk: config.kioskMode
     })
 
     mainWindow.loadURL(config.url)
