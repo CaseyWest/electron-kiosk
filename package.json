@@ -1,0 +1,15 @@
+{
+  "name": "kiosk",
+  "version": "0.0.1",
+  "main": "main.js",
+  "productName": "kiosk",
+  "dependencies": {
+    "electron": "^1.6.2",
+    "electron-packager": "^8.6.0"
+  },
+  "scripts": {
+    "start": "electron .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --prune=true --out=dist",
+    "package-windows": "electron-packager . --overwrite --platform=win32 --arch=x64 --prune=true --out=dist"
+  }
+}
