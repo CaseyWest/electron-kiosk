@@ -6,14 +6,14 @@ const os = require('os')
 const path = require('path')
 const url = require('url')
 
+const defaultConfig = './example.config.json'
 let mainWindow
 
 function loadConfig(callback) {
   let pathToConfig = path.join(os.homedir(), '.kiosk/config.json')
   if(!fs.existsSync(pathToConfig))
-    pathToConfig = './example.config.json'
+    pathToConfig = defaultConfig
 
-  let config;
   fs.readFile(pathToConfig, 'utf-8', (err, data) => {
     if(err) { console.log('err'); return; }
     typeof callback === 'function' && callback(JSON.parse(data));

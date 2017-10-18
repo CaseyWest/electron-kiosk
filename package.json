@@ -9,7 +9,11 @@
   },
   "scripts": {
     "start": "electron .",
+    "dev": "export NODE_ENV=development electron .",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --prune=true --out=dist",
     "package-windows": "electron-packager . --overwrite --platform=win32 --arch=x64 --prune=true --out=dist"
+  },
+  "devDependencies": {
+    "standard": "^10.0.3"
   }
 }

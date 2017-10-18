@@ -1,7 +1,6 @@
 {
   "urlToLoad": "http://google.com",
   "useKioskMode": true,
-  "alwaysOnTop": true,
   "showInTaskbar": false,
   "window": {
     "width": 1024,
