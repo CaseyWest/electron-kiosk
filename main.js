@@ -1,9 +1,6 @@
 'use strict'
 
-const electron = require('electron')
-const app = electron.app
-const BrowserWindow = electron.BrowserWindow
-
+const { app, globalShortcut, BrowserWindow } = require('electron')
 const fs = require('fs')
 const os = require('os')
 const path = require('path')
@@ -16,7 +13,6 @@ function loadConfig(callback) {
   if(!fs.existsSync(pathToConfig))
     pathToConfig = './example.config.json'
 
-  console.log(pathToConfig)
   let config;
   fs.readFile(pathToConfig, 'utf-8', (err, data) => {
     if(err) { console.log('err'); return; }
@@ -27,15 +23,38 @@ function loadConfig(callback) {
 function createWindow () {
   loadConfig((config) => {
     mainWindow = new BrowserWindow({
-      width: 1024, 
-      height: 768, 
-      kiosk: config.kioskMode
+      width: config.window.width, 
+      height: config.window.height,
+      closable: config.window.isClosable,
+      kiosk: config.useKioskMode,
+      showInTaskbar: config.showInTaskbar,
+      alwaysOnTop: true,
+      show: false,
+      focusable: true
     })
 
-    mainWindow.loadURL(config.url)
+    mainWindow.setMaximizable(config.window.isMaximizable)
+    mainWindow.setMinimizable(config.window.isMinimizable)
+    mainWindow.setFullScreenable(config.window.isMaximizable)
+    mainWindow.setResizable(config.window.isResizable)
+
+    mainWindow.loadURL(config.urlToLoad)
 
     mainWindow.on('closed', function () {
       mainWindow = null
+    })
+
+    globalShortcut.register(config.shortcuts.kill, () => {
+      app.exit()
+    })
+
+    globalShortcut.register(config.shortcuts.restart, () => {
+      app.relaunch()
+      app.exit()
+    })
+
+    mainWindow.once('ready-to-show', () => {
+      mainWindow.show()
     })
   })
 }

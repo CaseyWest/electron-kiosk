@@ -4,8 +4,8 @@
   "main": "main.js",
   "productName": "kiosk",
   "dependencies": {
-    "electron": "^1.6.2",
-    "electron-packager": "^8.6.0"
+    "electron": "^1.7.9",
+    "electron-packager": "^9.1.0"
   },
   "scripts": {
     "start": "electron .",

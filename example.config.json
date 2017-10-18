@@ -1,4 +1,20 @@
 {
-  "kioskMode": false,
-  "url": "http://google.com"
+  "urlToLoad": "http://google.com",
+  "useKioskMode": true,
+  "alwaysOnTop": true,
+  "showInTaskbar": false,
+  "window": {
+    "width": 1024,
+    "height": 768,
+    "isClosable": false,
+    "isMaximizable": false,
+    "isMinimizable": false,
+    "isResizable": false,
+    "showMenuBar": false
+  },
+  "shortcuts": {
+    "_comment": "Documentation on key combinations - https://electron.atom.io/docs/api/accelerator/",
+    "kill": "CmdOrCtrl+Alt+Shift+Space+Esc",
+    "restart": "CmdOrCtrl+Alt+Shift+Space+R"
+  }
 }
