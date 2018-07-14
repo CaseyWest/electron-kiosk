@@ -1,29 +1,25 @@
-'use strict'
-
-const { app, globalShortcut, BrowserWindow } = require('electron')
-const fs = require('fs')
-const os = require('os')
-const path = require('path')
-const url = require('url')
+import { app, globalShortcut, BrowserWindow } from 'electron'
+import { existsSync, readFile } from 'fs'
+import { homedir } from 'os'
+import { join } from 'path'
 
 const defaultConfig = './example.config.json'
 let mainWindow
 
-function loadConfig(callback) {
-  let pathToConfig = path.join(os.homedir(), '.kiosk/config.json')
-  if(!fs.existsSync(pathToConfig))
-    pathToConfig = defaultConfig
+function loadConfig (callback) {
+  let pathToConfig = join(homedir(), '.kiosk/config.json')
+  if (!existsSync(pathToConfig)) { pathToConfig = defaultConfig }
 
-  fs.readFile(pathToConfig, 'utf-8', (err, data) => {
-    if(err) { console.log('err'); return; }
-    typeof callback === 'function' && callback(JSON.parse(data));
-  });
+  readFile(pathToConfig, 'utf-8', (err, data) => {
+    if (err) { console.log('err'); return }
+    typeof callback === 'function' && callback(JSON.parse(data))
+  })
 }
 
 function createWindow () {
   loadConfig((config) => {
     mainWindow = new BrowserWindow({
-      width: config.window.width, 
+      width: config.window.width,
       height: config.window.height,
       closable: config.window.isClosable,
       kiosk: config.useKioskMode,
