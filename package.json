@@ -4,16 +4,23 @@
   "main": "main.js",
   "productName": "kiosk",
   "dependencies": {
+    "babel-preset-env": "^1.7.0",
     "electron": "^2.0.5",
     "electron-packager": "^12.1.0"
   },
   "scripts": {
-    "start": "electron .",
+    "build": "npm run clean && babel ./app/**/*.js --out-dir ./build/Release",
+    "clean": "del-cli ./build/Release/**/*",
     "dev": "export NODE_ENV=development electron .",
+    "lint": "standard",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --prune=true --out=dist",
-    "package-windows": "electron-packager . --overwrite --platform=win32 --arch=x64 --prune=true --out=dist"
+    "package-windows": "electron-packager . --overwrite --platform=win32 --arch=x64 --prune=true --out=dist",
+    "start": "npm run build && electron ./build/Release/app/main.js"
   },
   "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "del-cli": "^1.1.0",
     "standard": "^10.0.3"
   }
 }

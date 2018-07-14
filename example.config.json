@@ -1,11 +1,11 @@
 {
   "urlToLoad": "http://google.com",
-  "useKioskMode": true,
+  "useKioskMode": false,
   "showInTaskbar": false,
   "window": {
     "width": 1024,
     "height": 768,
-    "isClosable": false,
+    "isClosable": true,
     "isMaximizable": false,
     "isMinimizable": false,
     "isResizable": false,
