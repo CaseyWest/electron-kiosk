@@ -3,11 +3,6 @@
   "version": "0.0.1",
   "main": "main.js",
   "productName": "kiosk",
-  "dependencies": {
-    "babel-preset-env": "^1.7.0",
-    "electron": "^2.0.5",
-    "electron-packager": "^12.1.0"
-  },
   "scripts": {
     "build": "npm run clean && babel ./app/**/*.js --out-dir ./build/Release",
     "clean": "del-cli ./build/Release/**/*",
@@ -20,7 +15,10 @@
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "del-cli": "^1.1.0",
+    "electron": "^2.0.5",
+    "electron-packager": "^12.1.0",
     "standard": "^10.0.3"
   }
 }
